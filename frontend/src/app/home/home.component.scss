@@ -1,0 +1,7 @@
+.grid-wrapper {
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: calc(49% - 0.5rem) calc(49% - 0.5rem);
+    column-gap: 1rem;
+    row-gap: 1rem;
+  }

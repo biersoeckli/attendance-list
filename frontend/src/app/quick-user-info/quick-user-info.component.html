@@ -1,0 +1,15 @@
+<div *ngIf="userStatus">
+    <div class="aligncenter" *ngIf="userStatus.user">
+        <div class="profilePicture" [ngStyle]="{'width': imageWidthPixel, 'height': imageWidthPixel, 'background-image': 'url(' + userStatus.user.get('profilePicture')?.url() + ')'}">
+            <div></div>
+        </div>
+    </div>
+
+    <h1 *ngIf="userStatus.user" class="username">
+        <span *ngIf="isCurrentUser">Hey {{userStatus.user.attributes.firstname}}!</span>
+        <span *ngIf="!isCurrentUser">{{userStatus.user.attributes.grad}} {{userStatus.user.attributes.lastname}}</span>
+    </h1>
+    <h4 *ngIf="userStatus.user && showUsername" class="status">@{{userStatus.user.attributes.username}}</h4>
+    <h4 *ngIf="userStatus.status && showStatus" class="status"><span [ngStyle]="{'color': userStatus.status.attributes.color}"
+            class="statusColor">●</span> {{userStatus.status.attributes.status_string}}</h4>
+</div>

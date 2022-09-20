@@ -1,0 +1,45 @@
+<mat-list role="list" (click)="onClick()">
+
+    <div mat-subheader>Menu</div>
+
+    <mat-list-item matRipple routerLink="/me">
+        <mat-icon mat-list-icon>account_circle</mat-icon>
+        <div mat-line>Mein Profil</div>
+    </mat-list-item>
+    
+    <mat-list-item matRipple routerLink="/">
+        <mat-icon mat-list-icon>apps</mat-icon>
+        <div mat-line>Übersicht</div>
+    </mat-list-item>
+
+    <mat-list-item matRipple routerLink="/minions">
+        <mat-icon mat-list-icon>group</mat-icon>
+        <div mat-line>Verzeichnis</div>
+    </mat-list-item>
+
+    <mat-list-item *ngIf="isGeoLocationUser" matRipple routerLink="/map">
+        <mat-icon mat-list-icon>map</mat-icon>
+        <div mat-line>Karte</div>
+    </mat-list-item>
+
+    <mat-list-item *ngIf="isBFAUser" matRipple (click)="openBfa()">
+        <mat-icon mat-list-icon>icecream</mat-icon>
+        <div mat-line>BFA</div>
+    </mat-list-item>
+    
+    <mat-list-item *ngIf="isFmUser" matRipple (click)="openFischmarkt()">
+        <mat-icon mat-list-icon>sailing</mat-icon>
+        <div mat-line>Fischmarkt</div>
+    </mat-list-item>
+
+    <mat-list-item *ngIf="isAdmin" matRipple routerLink="/settings">
+        <mat-icon mat-list-icon>settings</mat-icon>
+        <div mat-line>Einstellungen</div>
+    </mat-list-item>
+
+    <mat-list-item matRipple (click)="logout()">
+        <mat-icon mat-list-icon>exit_to_app</mat-icon>
+        <div mat-line>Logout</div>
+    </mat-list-item>
+
+</mat-list>

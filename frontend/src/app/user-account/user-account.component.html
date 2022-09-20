@@ -1,0 +1,101 @@
+<mat-progress-bar *ngIf="showLoader" mode="indeterminate"></mat-progress-bar>
+<div *ngIf="!showLoader" class="loaderPlaceholder"></div>
+
+<div ngxFilePicker accept="image/*" (filePick)="onProfilePicrutePicked($event)">
+  <app-quick-user-info *ngIf="currentUser" [imageWidth]="150" [userId]="currentUser.id" [isCurrentUser]="true"
+    [showUsername]="false" [showStatus]="true">
+  </app-quick-user-info>
+</div>
+
+<div class="content" *ngIf="currentStatus">
+
+  <mat-form-field class="input-full-width" *ngIf="status">
+    <mat-label>Mein Status</mat-label>
+    <mat-select class="input-full-width" [(value)]="currentStatus" (valueChange)="saveCurrentState()">
+      <mat-option *ngFor="let item of status" [value]="item">
+        <span [ngStyle]="{'color': item.attributes.color}" class="statusColor">●</span>
+        {{item.attributes.status_string}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div mat-subheader class="personalInformation">Persönliche Angaben</div>
+
+  <mat-form-field class="input-full-width">
+    <mat-label>Grad</mat-label>
+    <input [(ngModel)]="currentUserJson.grad" matInput placeholder="">
+    <mat-icon matSuffix>equalizer</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field class="input-full-width">
+    <mat-label>Vorname</mat-label>
+    <input [(ngModel)]="currentUserJson.firstname" matInput placeholder="">
+    <mat-icon matSuffix>person</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field class="input-full-width">
+    <mat-label>Nachname</mat-label>
+    <input [(ngModel)]="currentUserJson.lastname" matInput placeholder="">
+    <mat-icon matSuffix>person</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field class="input-full-width">
+    <mat-label>Telefon Nr</mat-label>
+    <input [(ngModel)]="currentUserJson.telefoneNumber" matInput placeholder="">
+    <mat-icon matSuffix>phone</mat-icon>
+  </mat-form-field>
+
+
+  <mat-form-field class="input-full-width">
+    <mat-label>E-Mail</mat-label>
+    <input [(ngModel)]="currentUserJson.email" matInput placeholder="">
+    <mat-icon matSuffix>mail</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field class="input-full-width">
+    <mat-label>Funktion</mat-label>
+    <input [(ngModel)]="currentUserJson.position" matInput placeholder="">
+    <mat-icon matSuffix>functions</mat-icon>
+  </mat-form-field>
+
+  <div mat-subheader class="personalInformation">Stellvertretung</div>
+  <form class="example-form">
+    <mat-form-field class="input-full-width">
+      <mat-label>Stellvertreter/in</mat-label>
+      <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto" [(ngModel)]="stellvertreter"
+        (blur)="updateStv()">
+      <mat-icon matSuffix>group</mat-icon>
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          {{option.attributes.firstname}} {{option.attributes.lastname}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+
+  <div mat-subheader class="personalInformation">Abteilung</div>
+  <form class="example-form">
+    <mat-form-field class="input-full-width">
+      <mat-label>Abteilung</mat-label>
+      <input type="text" matInput [formControl]="deptControl" [matAutocomplete]="autoD" [(ngModel)]="currentDept"
+        (blur)="updateDept()">
+      <mat-icon matSuffix>recent_actors</mat-icon>
+      <mat-autocomplete #autoD="matAutocomplete" [displayWith]="displayDept">
+        <mat-option *ngFor="let option of filteredDept | async" [value]="option">
+          {{option.attributes.department}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+
+  <div mat-subheader class="personalInformation">Kontoinformationen</div>
+
+  <mat-form-field class="input-full-width">
+    <mat-label>Benutzername</mat-label>
+    <input [(ngModel)]="currentUserJson.username" matInput placeholder="">
+    <mat-icon matSuffix>sort_by_alpha</mat-icon>
+  </mat-form-field>
+
+  <button mat-flat-button color="primary" (click)="saveCurrentState()" [disabled]="showLoader">Speichern</button>&nbsp;
+  <button mat-button color="warn" (click)="changePassword()" [disabled]="showLoader">Passwort ändern</button>
+</div>

@@ -1,0 +1,36 @@
+<mat-card>
+    <mat-card-content>
+        <p class="title">Attendance List</p>
+        <mat-form-field class="input-full-width">
+            <mat-label>Benutzername</mat-label>
+            <input [(ngModel)]="loginModel.username" matInput placeholder="" (keyup)="formatUsername()"
+                (key.enter)="login()">
+        </mat-form-field>
+        <mat-form-field class="input-full-width">
+            <mat-label>Passwort</mat-label>
+            <input [(ngModel)]="loginModel.password" type="password" matInput placeholder="" (key.enter)="login()">
+        </mat-form-field>
+        <mat-form-field class="input-full-width" *ngIf="isRegistration">
+            <mat-label>Registration Code</mat-label>
+            <input [(ngModel)]="loginModel.registercode" type="text" matInput placeholder="" (key.enter)="login()">
+        </mat-form-field>
+        <span class="errorMsg" *ngIf="errorMessage">{{errorMessage}}</span>
+    </mat-card-content>
+    <mat-card-actions>
+        <div *ngIf="!loginInProgress" class="loginBtn">
+            <button mat-button mat-flat-button color="primary" (click)="login()">{{isRegistration ? 'Registrieren' :
+                'Login'}}</button>
+        </div>
+        <div *ngIf="loginInProgress" class="progBar">
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </div>
+    </mat-card-actions>
+</mat-card>
+
+<div *ngIf="!isRegistration && registrationIsEnabled" class="loginBtn">
+    <button mat-button (click)="isRegistration = true">Ich möchte mich registrieren</button>
+</div>
+
+<div *ngIf="isRegistration" class="loginBtn">
+    <button mat-button (click)="isRegistration = false">Ich habe bereits ein Konto</button>
+</div>

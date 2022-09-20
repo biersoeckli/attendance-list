@@ -1,0 +1,73 @@
+<mat-progress-bar *ngIf="!currentUserStatus" mode="indeterminate"></mat-progress-bar>
+<div *ngIf="currentUserStatus" class="loaderPlaceholder"></div>
+
+<div class="content">
+    <div *ngIf="currentUserStatus">
+        <app-quick-user-info [imageWidth]="150" [userId]="currentUserStatus.user.id" [isCurrentUser]="false"
+            [showUsername]="true" [showStatus]="false">
+        </app-quick-user-info>
+        <mat-card>
+            <mat-list role="list">
+
+                <div mat-subheader>Persönliche Informationen</div>
+                <mat-list-item matRipple (click)="toggleStatus()">
+                    <mat-icon mat-list-icon [ngStyle]="{'color': currentUserStatus.status.attributes.color}">
+                        fiber_manual_record</mat-icon>
+                    <div mat-line>{{currentUserStatus.status.attributes.status_string}}</div>
+                </mat-list-item>
+                <mat-list-item matRipple>
+                    <mat-icon mat-list-icon>person</mat-icon>
+                    <div mat-line>{{currentUserStatus.user.attributes.firstname}}
+                        {{currentUserStatus.user.attributes.lastname}}</div>
+                    <div mat-line>{{currentUserStatus.user.attributes.position}}</div>
+                </mat-list-item>
+
+                <mat-list-item matRipple *ngIf="currentDepartment">
+                    <mat-icon mat-list-icon>recent_actors</mat-icon>
+                    <div mat-line>{{currentDepartment.attributes.department}}</div>
+                </mat-list-item>
+
+                <mat-list-item matRipple>
+                    <mat-icon mat-list-icon>phone</mat-icon>
+                    <div mat-line><a
+                            [href]="'tel:' + currentUserStatus.user.attributes.telefoneNumber">{{currentUserStatus.user.attributes.telefoneNumber}}</a>
+                    </div>
+                </mat-list-item>
+
+                <div *ngIf="stv">
+                    <div mat-subheader>Stellvertretung</div>
+
+                    <mat-list-item matRipple [routerLink]="'/minions/' + stv.user.id">
+                        <mat-icon mat-list-icon>group</mat-icon>
+                        <div mat-line>{{stv.user.attributes.grad}} {{stv.user.attributes.firstname}}
+                            {{stv.user.attributes.lastname}}</div>
+                        <div mat-line> <span [ngStyle]="{'color': stv.status.attributes.color}"
+                                class="statusColor">●</span>
+                            {{stv.status.attributes.status_string}} </div>
+                    </mat-list-item>
+                </div>
+            </mat-list>
+            <mat-card-actions *ngIf="isAdmin">
+                <button mat-icon-button (click)="changePassword()">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button *ngIf="!profileIsfromCurrentUser" color="warn" (click)="deleteUser()">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+
+    <mat-card style="margin-top: 1rem;" *ngIf="!hideLocation">
+        <mat-list role="list">
+
+            <div mat-subheader>Location (beta)</div>
+            <mat-list-item matRipple>
+                <mat-icon mat-list-icon >
+                    location_on</mat-icon>
+                <div mat-line>Stand: {{latestLocation?.get('createdAt') | date: 'dd.MM.yyyy HH:mm' || '-'}}</div>
+            </mat-list-item>
+            </mat-list>
+        <div #lMap style="border-radius: 0.25rem; width: 100%; height: 300px"></div>
+    </mat-card>
+</div>

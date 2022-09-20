@@ -1,0 +1,28 @@
+<mat-sidenav-container class="example-container" (backdropClick)="close()">
+  <mat-sidenav class="sidenav" #sidenav (keydown.escape)="close()" disableClose>
+    <app-quick-user-info (click)="close()" routerLink="/me" *ngIf="currentUser" [imageWidth]="100"
+      [userId]="currentUser.id" [isCurrentUser]="true" [showUsername]="true" [showStatus]="true">
+    </app-quick-user-info>
+    <app-sidenav *ngIf="currentUser" (closeNav)='close()'></app-sidenav>
+  </mat-sidenav>
+  <mat-sidenav-content>
+
+    <div class="headerFooterPlaceholder">
+      <div></div>
+    </div>
+    <router-outlet></router-outlet>
+    <div class="headerFooterPlaceholder">
+      <div></div>
+    </div>
+
+    <mat-toolbar class="header">
+      <mat-toolbar-row>
+        <button *ngIf="currentUser" mat-button (click)="sidenav.open()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span>Attendance List</span>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <mat-toolbar class="footer">Developed with ❤️</mat-toolbar>
+  </mat-sidenav-content>
+</mat-sidenav-container>

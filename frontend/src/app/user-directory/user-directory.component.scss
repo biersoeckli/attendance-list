@@ -1,0 +1,36 @@
+.list-image {
+  background-size: cover;
+}
+
+mat-card {
+  padding: 0;
+}
+
+.input-full-width {
+  width: 100%;
+  font-size: 16px;
+}
+
+.searchContainer {
+  padding: 1rem 1rem 0 1rem;
+}
+
+.chipContainer {
+  margin: 0 1rem 0.7rem 1rem;
+}
+
+.scrollable {
+  width: 100%;
+  height: 40px;
+  overflow-y: hidden;
+  overflow-x: auto;
+  white-space: nowrap !important;
+}
+
+.scrollable div {
+  display: inline-block !important;
+}
+
+mat-chip {
+  display: inline-block !important;
+}
