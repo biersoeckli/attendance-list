@@ -7,6 +7,8 @@ All components are designed for mobile use only.
 
 ## Preview
 
-<img width="100%" src="/biersoeckli/attendance-list/assets/screenshot-1.png" />
+<img width="32%" style="padding-right: 1%;" src="/biersoeckli/attendance-list/assets/screenshot-1.png" />
 
-<img width="100%" src="/biersoeckli/attendance-list/assets/screenshot-2.png" />
+<img width="32%" style="padding-right: 1%;" src="/biersoeckli/attendance-list/assets/screenshot-2.png" />
+
+<img width="32%" src="/biersoeckli/attendance-list/assets/screenshot-3.png" />
