@@ -8,7 +8,7 @@ The attendance list is extendable with 2 other components (see below). All compo
 - <a href="https://github.com/biersoeckli/bfa">BFA (Bataillonsinterner Finanzausgleich)</a>
 - <a href="https://github.com/biersoeckli/fischmarkt">Fischmarkt</a>
 
-## Whats this?
+## What's this?
 The "Attendance List" is a system to visualise all registrated users with their current location on a map. Alternatively, each user can set a location status (Office, Out Of Office, Holiday, Leisure Time). It was originally created to have an overview of the location from all members of a Stab in a Swiss Army Bataillon.
 
 ## Preview
