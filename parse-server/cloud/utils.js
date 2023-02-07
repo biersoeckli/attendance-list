@@ -103,6 +103,7 @@ async function sendSms(phoneNumber, text) {
 }
 
 async function updateInfomaniakPingDns() {
+  return; // disabled
   await fetch(process.env.INFOMANIAK_DNS_PING_URL, {
     method: 'POST', // *GET, POST, PUT, DELETE, etc.
     mode: 'cors', // no-cors, *cors, same-origin
