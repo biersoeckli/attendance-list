@@ -5,16 +5,9 @@ const ParseDashboard = require('parse-dashboard');
 const fs = require('fs');
 
 
-const caCert = process.env.DIGITALOCEAN_CA_CERT;
-if (!caCert) {
-  throw `DIGITALOCEAN_CA_CERT Certificate not provided: ${caCert}`
-}
-const certificatePath = __dirname + '/' + 'digitalocean-ca-certificate.crt';
-console.log(`CA-Certificate Path: ` + certificatePath);
-fs.writeFileSync(certificatePath, caCert);
 
 const databaseUri = process.env.DATABASE_URI || console.log('DATABASE_URI is not set');
-const fullDatabaseUrl = databaseUri + certificatePath;
+const fullDatabaseUrl = databaseUri;
 const masterKey = process.env.MASTER_KEY || console.log('MASTER_KEY is not set');
 const serverUrl = process.env.SERVER_URL || console.log('SERVER_URL is not set');
 const appId = process.env.APP_ID || console.log('APP_ID is not set');
