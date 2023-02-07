@@ -287,7 +287,7 @@ async function getParameterValueByKey(key) {
   const GameScore = Parse.Object.extend('parameter');
   const query = new Parse.Query(GameScore);
   query.equalTo('key', key);
-  const param = await query.first();
+  const param = await query.first({ useMasterKey: true });
   if (param == null) {
     return '';
   } else {
@@ -298,11 +298,11 @@ async function getParameterValueByKey(key) {
 async function getRandomStatus() {
   const GameScore = Parse.Object.extend('status');
   const query = new Parse.Query(GameScore);
-  return await query.first();
+  return await query.first({ useMasterKey: true });
 }
 
 async function getRandomDepartment() {
   const GameScore = Parse.Object.extend('department');
   const query = new Parse.Query(GameScore);
-  return await query.first();
+  return await query.first({ useMasterKey: true });
 }
