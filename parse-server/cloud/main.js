@@ -149,7 +149,7 @@ Parse.Cloud.afterSave('FM_Aquarium', async request => {
     const GameScore = Parse.Object.extend("Sms");
     const gameScore = new GameScore();
     gameScore.set("phone", user.get('telefoneNumber'));
-    gameScore.set("text", `Hey ${user.get('firstname')}. Du hast einen neuen ${fishType.get('name') || 'Fisch'}-Antrag von ${creator?.get('firstname')} erhalten. Begründung: ${request.object.get('reason')}.`);
+    gameScore.set("text", `Hey ${user.get('firstname')}. Du hast einen neuen ${fishType.get('name') || 'Fisch'}-Antrag von ${creator?.get('firstname')} ${creator?.get('lastname')} erhalten. Begründung: ${request.object.get('reason')}.`);
     await gameScore.save(null, { useMasterKey: true });
   }
 
@@ -157,7 +157,7 @@ Parse.Cloud.afterSave('FM_Aquarium', async request => {
     const GameScore = Parse.Object.extend("Sms");
     const gameScore = new GameScore();
     gameScore.set("phone", user.get('telefoneNumber'));
-    gameScore.set("text", `Hey ${user.get('firstname')}. Der ${fishType.get('name') || 'Fisch'}-Antrag von ${creator?.get('firstname')} wurde bewilligt. Begründung: ${request.object.get('reason')}.`);
+    gameScore.set("text", `Hey ${user.get('firstname')}. Der ${fishType.get('name') || 'Fisch'}-Antrag von ${creator?.get('firstname')} ${creator?.get('lastname')} wurde bewilligt. Begründung: ${request.object.get('reason')}.`);
     await gameScore.save(null, { useMasterKey: true });
   }
 });
