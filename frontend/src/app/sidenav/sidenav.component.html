@@ -17,6 +17,11 @@
         <div mat-line>Verzeichnis</div>
     </mat-list-item>
 
+    <mat-list-item *ngIf="isGeoLocationUser" matRipple routerLink="/emergency-list">
+        <mat-icon mat-list-icon>emergency</mat-icon>
+        <div mat-line>Notfallkarte</div>
+    </mat-list-item>
+
     <mat-list-item *ngIf="isGeoLocationUser" matRipple routerLink="/map">
         <mat-icon mat-list-icon>map</mat-icon>
         <div mat-line>Karte</div>

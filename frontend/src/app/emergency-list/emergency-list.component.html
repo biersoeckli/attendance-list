@@ -1,0 +1,12 @@
+<div *ngIf="emergencyContacts" class="content">
+    <mat-card>
+        <mat-list role="list">
+            <mat-list-item *ngFor="let item of emergencyContacts; let i = index" matRipple (click)="call(item)">
+                <div mat-line>{{item.get('name')}}</div>
+                <div mat-line>
+                    Tel.: {{item.get('phone')}} </div>
+                <mat-divider *ngIf="i < (emergencyContacts.length - 1)"></mat-divider>
+            </mat-list-item>
+        </mat-list>
+    </mat-card>
+</div>

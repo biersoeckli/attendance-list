@@ -9,6 +9,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { HomeComponent } from './home/home.component';
 import { UserMapComponent } from './user-map/user-map.component';
+import { EmergencyListComponent } from './emergency-list/emergency-list.component';
 
 const routes: Routes = [
   /*{
@@ -20,6 +21,11 @@ const routes: Routes = [
     path: '',
     pathMatch: 'full',
     component: UserListComponent,
+  },
+  {
+    path: 'emergency-list',
+    pathMatch: 'full',
+    component: EmergencyListComponent,
   },
   {
     path: 'login',

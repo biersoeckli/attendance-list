@@ -34,6 +34,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { HomeComponent } from './home/home.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { UserMapComponent } from './user-map/user-map.component';
+import { EmergencyListComponent } from './emergency-list/emergency-list.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { UserMapComponent } from './user-map/user-map.component';
     SettingsComponent,
     StatisticsComponent,
     HomeComponent,
-    UserMapComponent
+    UserMapComponent,
+    EmergencyListComponent
 
   ],
   imports: [

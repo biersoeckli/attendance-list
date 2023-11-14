@@ -1,2 +1,2 @@
 FROM mcr.microsoft.com/devcontainers/javascript-node:18-bullseye
-RUN npm install -g @ionic/cli
+RUN npm install -g @angular/cli
