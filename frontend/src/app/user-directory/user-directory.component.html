@@ -11,24 +11,25 @@
             </mat-form-field>
         </div>
         <div class="chipContainer" *ngIf="departments">
-            <mat-chip-list aria-label="Abteilungen">
+            <mat-chip-listbox aria-label="Abteilungen">
                 <div class="scrollable">
                     <div>
                         <mat-chip (click)="filterValue = ''; filterUserStatus();">Alle</mat-chip>
                     </div>
-                    <div *ngFor="let item of departments" >
+                    <div *ngFor="let item of departments">
                         <mat-chip (click)="searchDepartment(item)">{{item.attributes.department}}</mat-chip>
                     </div>
                 </div>
-            </mat-chip-list>
+            </mat-chip-listbox>
         </div>
         <mat-list role="list">
 
             <mat-list-item *ngFor="let item of filteredUserStatus" matRipple [routerLink]="'/minions/' + item.user.id">
-                <div *ngIf="item.user.get('profilePicture')" mat-card-avatar [ngStyle]="{'background-image': 'url(' + item.user.get('profilePicture').url() + ')'}"
+                <div *ngIf="item.user.get('profilePicture')" matListItemAvatar
+                    [ngStyle]="{'background-image': 'url(' + item.user.get('profilePicture').url() + ')'}"
                     class="list-image"></div>
-                <div mat-line>{{item.user.attributes.grad}} {{item.user.attributes.lastname}}</div>
-                <div mat-line> <span [ngStyle]="{'color': item.status.attributes.color}" class="statusColor">●</span>
+                <div matListItemTitle>{{item.user.attributes.grad}} {{item.user.attributes.lastname}}</div>
+                <div matListItemLine> <span [ngStyle]="{'color': item.status.attributes.color}" class="statusColor">●</span>
                     {{item.status.attributes.status_string}} </div>
                 <!--mat-divider></mat-divider-->
             </mat-list-item>

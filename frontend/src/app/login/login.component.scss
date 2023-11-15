@@ -11,6 +11,7 @@ mat-card-content {
     text-align: center;
     margin: 2rem 0 1.5rem 0;
     padding-top: 1rem;
+    padding-bottom: 1rem;
 }
 
 .input-full-width {
@@ -19,12 +20,18 @@ mat-card-content {
 }
 
 .loginBtn {
-  text-align: center !important;
+  margin: 0 auto;
+  text-align: center;
   margin-bottom: 1rem;
+}
+
+.loginBtn:disabled {
+  margin: 0 auto;
 }
 
 .errorMsg {
   color: red;
+  margin-bottom: 1rem;
 }
 
 .progBar {

@@ -14,17 +14,16 @@
             <mat-label>Registration Code</mat-label>
             <input [(ngModel)]="loginModel.registercode" type="text" matInput placeholder="" (key.enter)="login()">
         </mat-form-field>
-        <span class="errorMsg" *ngIf="errorMessage">{{errorMessage}}</span>
-    </mat-card-content>
-    <mat-card-actions>
-        <div *ngIf="!loginInProgress" class="loginBtn">
-            <button mat-button mat-flat-button color="primary" (click)="login()">{{isRegistration ? 'Registrieren' :
-                'Login'}}</button>
+        <div class="errorMsg" *ngIf="errorMessage">{{errorMessage}}</div>
+        <div class="loginBtn">
+            <button [disabled]="loginInProgress" mat-button mat-flat-button color="primary" (click)="login()">
+                {{isRegistration ? 'Registrieren' : 'Login'}}
+            </button>
         </div>
         <div *ngIf="loginInProgress" class="progBar">
             <mat-progress-bar mode="indeterminate"></mat-progress-bar>
         </div>
-    </mat-card-actions>
+    </mat-card-content>
 </mat-card>
 
 <div *ngIf="!isRegistration && registrationIsEnabled" class="loginBtn">

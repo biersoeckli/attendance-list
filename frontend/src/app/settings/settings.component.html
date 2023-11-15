@@ -4,10 +4,10 @@
 <div *ngIf="parameters" class="content">
     <mat-card>
         <mat-list role="list">
-            <div mat-subheader>Parameter</div>
+            <div matSubheader>Parameter</div>
             <mat-list-item *ngFor="let item of parameters" matRipple (click)="editItem(item)">
-                <div mat-line>{{item.attributes.key}}: <strong>{{item.attributes.value}}</strong> </div>
-                <div mat-line> {{item.attributes.description}} </div>
+                <div matListItemTitle>{{item.attributes.key}}: <strong>{{item.attributes.value}}</strong> </div>
+                <div matListItemLine> {{item.attributes.description}} </div>
                 <!--mat-divider></mat-divider-->
             </mat-list-item>
 
