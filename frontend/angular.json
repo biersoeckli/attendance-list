@@ -73,18 +73,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "attendence-list-ng:build"
+            "buildTarget": "attendence-list-ng:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "attendence-list-ng:build:production"
+              "buildTarget": "attendence-list-ng:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "attendence-list-ng:build"
+            "buildTarget": "attendence-list-ng:build"
           }
         },
         "test": {
