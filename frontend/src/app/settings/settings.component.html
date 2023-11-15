@@ -5,12 +5,13 @@
     <mat-card>
         <mat-list role="list">
             <div matSubheader>Parameter</div>
-            <mat-list-item *ngFor="let item of parameters" matRipple (click)="editItem(item)">
+            @for (item of parameters; track item.id) {
+            <mat-list-item matRipple (click)="editItem(item)">
                 <div matListItemTitle>{{item.attributes.key}}: <strong>{{item.attributes.value}}</strong> </div>
                 <div matListItemLine> {{item.attributes.description}} </div>
-                <!--mat-divider></mat-divider-->
             </mat-list-item>
-
+            <mat-divider *ngIf="!$last"></mat-divider>
+            }
         </mat-list>
     </mat-card>
 </div>
