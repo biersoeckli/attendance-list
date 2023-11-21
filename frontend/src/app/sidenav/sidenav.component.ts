@@ -65,8 +65,11 @@ export class SidenavComponent implements OnInit {
     window.open(environment.fischmarktAuthUrl + currentUser.getSessionToken(), '_self');
   }
 
+  openSingBook() {
+    window.open('/assets/2022_Liederbuch_4_Auflage_print.pdf')
+  }
+
   onClick() {
     this.closeNav.emit(null);
   }
-
 }

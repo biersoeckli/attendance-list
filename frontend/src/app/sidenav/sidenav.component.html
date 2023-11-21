@@ -37,6 +37,11 @@
         <div matListItemTitle>Fischmarkt</div>
     </mat-list-item>
 
+    <mat-list-item matRipple (click)="openSingBook()">
+        <mat-icon matListItemIcon>genres</mat-icon>
+        <div matListItemTitle>Liederbuch</div>
+    </mat-list-item>
+
     <mat-list-item *ngIf="isAdmin" matRipple routerLink="/settings">
         <mat-icon matListItemIcon>settings</mat-icon>
         <div matListItemTitle>Einstellungen</div>
