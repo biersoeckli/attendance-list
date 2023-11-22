@@ -248,7 +248,8 @@ Parse.Cloud.define('resetBfaSaldo', async request => {
 
 function groupFishies(xs, key) {
   return xs.reduce((rv, x) => {
-    (rv[x.attributes.user.id] = rv[x.attributes.user.id] || []).push(x);
+    const userId = x?.attributes?.user?.id ?? 'unknown user';
+    (rv[userId] = rv[userId] || []).push(x);
     return rv;
   }, {});
 }
