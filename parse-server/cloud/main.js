@@ -206,7 +206,7 @@ Parse.Cloud.define('getFishRanking', async request => {
     returnVal.sort(function (a, b) {
       return b.points - a.points;
     });
-    return returnVal;
+    return returnVal.filter(x => !!x?.user?.id);
   }
   return [];
 });
