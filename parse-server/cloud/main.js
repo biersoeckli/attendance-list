@@ -183,7 +183,8 @@ Parse.Cloud.define('getFishRanking', async request => {
     query.include('fishType');
     query.include('user');
     query.limit(10000);
-    const fishes = await query.find({ useMasterKey: true });
+    const fishies = await query.find({ useMasterKey: true });
+    const fishes = fishies.filter(fish => !!fish.get('user'));
 
     const returnVal = [];
     const groupedByUser = groupFishies(fishes, 'id');
