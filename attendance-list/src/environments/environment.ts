@@ -1,7 +1,7 @@
 export const environment = {
   production: false,
   parseServerUrl: '/parse',
-  parseAppId: 'spitbat75-attendence-list',
+  parseAppId: 'attendence-list',
   bfaAuthUrl: '/bfa/login?token=',
   fischmarktAuthUrl: '/fm/login?token='
 }
