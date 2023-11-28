@@ -1,0 +1,7 @@
+{
+  "name": "BFA",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

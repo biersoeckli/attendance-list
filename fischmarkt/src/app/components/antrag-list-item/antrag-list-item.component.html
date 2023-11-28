@@ -1,0 +1,15 @@
+<ion-item>
+  <ion-label>
+    <ion-text>
+      {{antrag.get('user').attributes.grad}} {{antrag.get('user').attributes.firstname}} {{antrag.get('user').attributes.lastname}}
+    </ion-text>
+    
+    <ion-text color="primary">
+      <h3>{{antrag.get('fishType').attributes.name}} | {{antrag.attributes.reason}}</h3>
+    </ion-text>
+    <ion-text color="medium">
+      <p>Angefordert von: {{antrag.get('creator').attributes.grad}} {{antrag.get('creator').attributes.firstname}} {{antrag.get('creator').attributes.lastname}}
+      </p>
+    </ion-text>
+  </ion-label>
+</ion-item>

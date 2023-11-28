@@ -1,0 +1,4 @@
+<ion-app>
+  <ion-progress-bar *ngIf="showLoader === true" type="indeterminate"></ion-progress-bar>
+  <ion-router-outlet *ngIf="!showLoader"></ion-router-outlet>
+</ion-app>

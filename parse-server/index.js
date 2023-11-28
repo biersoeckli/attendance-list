@@ -2,6 +2,7 @@ const express = require('express');
 const ParseServer = require('parse-server').ParseServer;
 const FSFilesAdapter = require('@parse/fs-files-adapter');
 const ParseDashboard = require('parse-dashboard');
+const path = require('path');
 
 
 
@@ -58,6 +59,33 @@ const app = express();
 // Serve the Parse API on the /parse URL prefix
 app.use(parseMountPath, api);
 app.use('/dashboard', dashboard);
+
+
+/***
+ * STATIC FILES
+ */
+// Serve the static Angular files
+app.use('/att', express.static(path.join(__dirname, 'frontend/att')));
+// Serve the static Angular files
+app.use('/bfa', express.static(path.join(__dirname, 'frontend/bfa')));
+// Serve the static Angular files
+app.use('/fm', express.static(path.join(__dirname, 'frontend/fm')));
+
+// Handle all other routes and redirect to the index file
+app.get('*', (req, res) => {
+  if (req.url.includes('/att')) {
+    res.sendFile(path.join(__dirname, 'frontend/att/index.html'));
+  } else if (req.url.includes('/bfa')) {
+    res.sendFile(path.join(__dirname, 'frontend/bfa/index.html'));
+  } else if (req.url.includes('/fm')) {
+    res.sendFile(path.join(__dirname, 'frontend/fm/index.html'));
+  } else if (req.url.includes('/parse') || req.url.includes('/dashboard')) {
+    //res.send('not found');
+  } else {
+    res.redirect('/att');
+  }
+});
+
 
 const httpServer = require('http').createServer(app);
 httpServer.listen(port, function () {

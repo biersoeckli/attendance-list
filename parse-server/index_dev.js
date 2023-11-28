@@ -1,6 +1,7 @@
 const express = require('express');
 const ParseServer = require('parse-server').ParseServer;
 const FSFilesAdapter = require('@parse/fs-files-adapter');
+const path = require('path');
 
 const fsAdapter = new FSFilesAdapter({});
 
@@ -21,9 +22,6 @@ const app = express();
 const mountPath = process.env.PARSE_MOUNT || '/parse';
 app.use(mountPath, api);
 
-app.get('/', function(req, res) {
-  res.status(200).send('I dream of being a website.');
-});
 
 const ParseDashboard = require('parse-dashboard');
 
@@ -39,8 +37,8 @@ const dashboard = new ParseDashboard({
   ],
   "users": [
     {
-      "user":"ikp",
-      "pass":"ikp"
+      "user": "ikp",
+      "pass": "ikp"
     },
   ], useEncryptedPasswords: false
 });
@@ -48,8 +46,31 @@ const dashboard = new ParseDashboard({
 app.use("/dashboard", dashboard);
 const port = process.env.PORT || 1337;
 const httpServer = require('http').createServer(app);
-httpServer.listen(port, function() {
+httpServer.listen(port, function () {
   console.log('parse-dashboard running on port ' + port + '.');
+});
+
+
+// Serve the static Angular files
+app.use('/att', express.static(path.join(__dirname, 'frontend/att')));
+// Serve the static Angular files
+app.use('/bfa', express.static(path.join(__dirname, 'frontend/bfa')));
+// Serve the static Angular files
+app.use('/fm', express.static(path.join(__dirname, 'frontend/fm')));
+
+// Handle all other routes and redirect to the index file
+app.get('*', (req, res) => {
+  if (req.url.includes('/att')) {
+    res.sendFile(path.join(__dirname, 'frontend/att/index.html'));
+  } else if (req.url.includes('/bfa')) {
+    res.sendFile(path.join(__dirname, 'frontend/bfa/index.html'));
+  } else if (req.url.includes('/fm')) {
+    res.sendFile(path.join(__dirname, 'frontend/fm/index.html'));
+  } else if (req.url.includes('/parse')) {
+    res.send('not found');
+  } else {
+    res.redirect('/att');
+  }
 });
 
 // This will enable the Live Query real-time server

@@ -1,0 +1,48 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="openAttendanceList()">
+        <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      Produkte
+    </ion-title>
+    <ion-buttons slot="primary">
+      <ion-button routerLink="/scanner" *ngIf="android">
+        <ion-icon slot="icon-only" name="scan-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-searchbar *ngIf="android" [(ngModel)]="searchString" (ionChange)="filterProducts()" placeholder="Suchen"></ion-searchbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Produkte</ion-title>
+    </ion-toolbar>
+    <ion-toolbar>
+      <ion-buttons slot="primary">
+        <ion-button routerLink="/scanner">
+          <ion-icon slot="icon-only" name="scan-circle-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-searchbar [(ngModel)]="searchString" (ionChange)="filterProducts()" placeholder="Suchen"></ion-searchbar>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-list *ngIf="filteredProducts">
+    <ion-item-sliding *ngFor="let item of filteredProducts" >
+      <ion-item (click)="basketService.additem2Basket(item)">
+        <ion-label>{{item.attributes.name}}</ion-label>
+        <ion-label>{{item.attributes.price | number : '1.2-2'}} CHF</ion-label>
+        <ion-ripple-effect></ion-ripple-effect>
+      </ion-item>
+      <ion-item-options side="end" >
+        <ion-item-option color="danger" (click)="deleteItem(item)" *ngIf="isBfaAdmin">Löschen</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+</ion-content>

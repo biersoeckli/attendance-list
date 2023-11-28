@@ -1,0 +1,39 @@
+<!--ion-header>
+  <ion-toolbar>
+    <ion-title>DecisionBoard</ion-title>
+  </ion-toolbar>
+</ion-header-->
+
+<ion-content>
+  <div *ngIf="currentAntrag">
+    <div class="aligncenter" *ngIf="currentAntrag.get('fishType')?.get('image')">
+      <div class="profilePicture"
+        [ngStyle]="{'width': '300px', 'height': '200px', 'background-image': 'url(' + currentAntrag.get('fishType')?.get('image')?.url() + ')'}">
+        <div></div>
+      </div>
+    </div>
+
+    <h1 class="username">
+      <span *ngIf="currentAntrag.get('user')">{{currentAntrag.get('user').attributes.grad}}
+        {{currentAntrag.get('user').attributes.firstname}} {{currentAntrag.get('user').attributes.lastname}}</span>
+    </h1>
+
+    <h1 class="reason">
+      <span *ngIf="currentAntrag.attributes.reason">{{currentAntrag.attributes.reason}}</span>
+    </h1>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <ion-button expand="block" color="success" [disabled]="isLoading === true" (click)="bewilligen()">Bewilligen</ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button expand="block" color="danger" [disabled]="isLoading === true" (click)="ablehnen()">Ablehnen</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </div>
+
+
+</ion-content>

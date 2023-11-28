@@ -1,0 +1,37 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Anträge
+    </ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="openDecisionBoard()" *ngIf="antraegeService.userIsAdmin">
+        <ion-icon slot="end" name="play-outline"></ion-icon>
+      </ion-button>
+      <ion-button routerLink="/antrag">
+        <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Anträge</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div *ngIf="antraegeService.allAntraege">
+    <app-explore-container *ngIf="antraegeService.allAntraege.length === 0" name="Zurzeit keine Anträge vorhanden.">
+    </app-explore-container>
+    <ion-list>
+      <ion-item-sliding *ngFor="let item of antraegeService.allAntraege">
+        <antrag-list-item [antrag]="item"></antrag-list-item>
+        <ion-item-options side="end" *ngIf="antraegeService.userIsAdmin">
+          <ion-item-option color="success" (click)="antraegeService.apporveAntrag(item)">Annehmen</ion-item-option>
+          <ion-item-option color="danger" (click)="antraegeService.denyAntrag(item)">Ablehnen</ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  </div>
+</ion-content>
