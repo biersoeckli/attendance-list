@@ -6,7 +6,8 @@ export const environment = {
   production: false,
   parseServerUrl: '/parse',
   parseAppId: 'attendance-list',
-  attendanceListUrl: '/att'
+  attendanceListUrl: '/att',
+  fischmarktBasePath: '/fm'
 };
 
 /*

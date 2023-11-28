@@ -50,7 +50,7 @@ export class SidenavComponent implements OnInit {
 
   async logout() {
     Parse.User.logOut().then(() => {
-      window.open('/login', '_self');
+      window.open(environment.attendanceListBasePath + '/login', '_self');
     });
   }
 
@@ -66,7 +66,7 @@ export class SidenavComponent implements OnInit {
   }
 
   openSingBook() {
-    window.open('/assets/2022_Liederbuch_4_Auflage_print.pdf')
+    window.open(environment.attendanceListBasePath + '/assets/2022_Liederbuch_4_Auflage_print.pdf')
   }
 
   onClick() {

@@ -8,6 +8,7 @@ import { ParameterService } from '../services/parameter.service';
 import { Parameter } from '../constants/parameter';
 import { UserRoles } from '../entities/user-roles';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -70,7 +71,7 @@ export class LoginComponent implements OnInit {
 
           await user.signUp();
 
-          window.open('/me', '_self');
+          window.open(environment.attendanceListBasePath + '/me', '_self');
         } else {
           this.snackbar.open('Registrations Code falsch', null, {
             duration: 2000
@@ -80,7 +81,7 @@ export class LoginComponent implements OnInit {
 
       } else {
         const user = await Parse.User.logIn(this.loginModel.username, this.loginModel.password);
-        window.open('/', '_self'); // not so nice
+        window.open(environment.attendanceListBasePath, '_self'); // not so nice
       }
     } catch (ex) {
       this.errorMessage = ex.message;

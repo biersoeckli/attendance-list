@@ -31,7 +31,7 @@ export class Tab1Page {
   }
 
   openReglement() {
-    window.open('/assets/Fischerreglement_Spit_Bat_75.pdf', '_self');
+    window.open(environment.fischmarktBasePath + '/assets/Fischerreglement_Spit_Bat_75.pdf', '_self');
   }
   
   openAttendanceList() {
