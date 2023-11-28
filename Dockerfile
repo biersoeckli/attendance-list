@@ -11,9 +11,7 @@ RUN cd attendance-list && npm install && npm run build
 
 # Creating final image
 FROM node:lts
-# Setze das Arbeitsverzeichnis für den nicht-root Benutzer
 WORKDIR /app
-# Kopiere die kompilierte Anwendung aus dem Build-Image
 COPY --from=build /build-dir/parse-server .
 
 RUN npm install
