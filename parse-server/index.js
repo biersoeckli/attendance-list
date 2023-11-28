@@ -73,13 +73,13 @@ app.use('/fm', express.static(path.join(__dirname, 'frontend/fm')));
 
 // Handle all other routes and redirect to the index file
 app.get('*', (req, res) => {
-  if (req.url.includes('/att')) {
+  if (req.path.startsWith('/att')) {
     res.sendFile(path.join(__dirname, 'frontend/att/index.html'));
-  } else if (req.url.includes('/bfa')) {
+  } else if (req.path.startsWith('/bfa')) {
     res.sendFile(path.join(__dirname, 'frontend/bfa/index.html'));
-  } else if (req.url.includes('/fm')) {
+  } else if (req.path.startsWith('/fm')) {
     res.sendFile(path.join(__dirname, 'frontend/fm/index.html'));
-  } else if (req.url.includes('/parse') || req.url.includes('/dashboard')) {
+  } else if (req.path.startsWith('/parse') || req.path.startsWith('/dashboard')) {
     //res.send('not found');
   } else {
     res.redirect('/att');
