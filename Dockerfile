@@ -20,7 +20,7 @@ RUN cd bfa && npm install && npm run build-prod-dockerfile
 RUN cd attendance-list && npm install && npm run build-prod-dockerfile
 
 # Creating final image
-FROM node:lts-slim
+FROM node:lts
 WORKDIR /app
 COPY --from=build /build-dir/parse-server .
 
