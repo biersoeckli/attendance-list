@@ -81,7 +81,7 @@ export class LoginComponent implements OnInit {
 
       } else {
         const user = await Parse.User.logIn(this.loginModel.username, this.loginModel.password);
-        window.open(environment.attendanceListBasePath, '_self'); // not so nice
+        window.open(environment.attendanceListBasePath ?? '/', '_self'); // not so nice
       }
     } catch (ex) {
       this.errorMessage = ex.message;
