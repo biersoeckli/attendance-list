@@ -10,7 +10,8 @@ if (process.env.IS_PRODUCTION !== undefined) {
     production: ${process.env.IS_PRODUCTION},
     parseServerUrl: '${process.env.PARSE_SERVER_URL}',
     parseAppId: '${process.env.PARSE_APP_ID}',
-    attendanceListUrl: '${process.env.ATTENDANCE_LIST_URL}'
+    attendanceListUrl: '${process.env.ATTENDANCE_LIST_URL}',
+    fischmarktBasePath: '/fm'
   };
 `;
 

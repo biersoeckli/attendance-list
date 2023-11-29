@@ -11,7 +11,8 @@ if (process.env.IS_PRODUCTION !== undefined) {
     parseServerUrl: '${process.env.PARSE_SERVER_URL}',
     parseAppId: '${process.env.PARSE_APP_ID}',
     bfaAuthUrl: '${process.env.BFA_AUTH_URL}',
-    fischmarktAuthUrl: '${process.env.FISCHMARKT_AUTH_URL}'
+    fischmarktAuthUrl: '${process.env.FISCHMARKT_AUTH_URL}',
+    attendanceListBasePath: '/att'
   };
 `;
 
