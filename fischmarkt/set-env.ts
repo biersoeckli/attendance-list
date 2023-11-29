@@ -11,7 +11,7 @@ if (process.env.IS_PRODUCTION !== undefined) {
     parseServerUrl: '${process.env.PARSE_SERVER_URL}',
     parseAppId: '${process.env.PARSE_APP_ID}',
     attendanceListUrl: '${process.env.ATTENDANCE_LIST_URL}',
-    fischmarktBasePath: ''
+    fischmarktBasePath: '${process.env.FISCHMARKT_BASE_PATH}'
   };
 `;
 

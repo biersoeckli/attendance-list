@@ -11,6 +11,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build-prod": "npm run config && ng build --configuration production --output-path=dist/",
+    "build-prod-dockerfile": "npm run config && ng build --configuration production --output-path=../parse-server/frontend/fm",
     "config": "ts-node set-env.ts"
   },
   "private": true,

@@ -1,8 +1,8 @@
 export const environment = {
   production: false,
-  parseServerUrl: '/parse',
+  parseServerUrl: 'http://localhost:1337/parse',
   parseAppId: 'attendance-list',
-  bfaAuthUrl: '/bfa/login?token=',
-  fischmarktAuthUrl: '/fm/login?token=',
-  attendanceListBasePath: '/att'
+  bfaAuthUrl: 'http://localhost:8100/login?token=',
+  fischmarktAuthUrl: 'http://localhost:8100/login?token=',
+  attendanceListBasePath: '/'
 }

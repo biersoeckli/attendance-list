@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-  parseServerUrl: '/parse',
+  parseServerUrl: 'http://localhost:1337/parse',
   parseAppId: 'attendance-list',
-  attendanceListUrl: '/att'
+  attendanceListUrl: 'http://localhost:4200'
 };
 
 /*
