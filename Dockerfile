@@ -8,7 +8,7 @@ COPY . .
 # environment variables for building
 ARG IS_PRODUCTION=true
 ARG PARSE_SERVER_URL=/parse
-ARG PARSE_APP_ID=attendance-list
+ARG PARSE_APP_ID=spitbat75-attendence-list
 ARG ATTENDANCE_LIST_URL=/att
 ARG BFA_AUTH_URL=/bfa/login?token=
 ARG FISCHMARKT_AUTH_URL=/fm/login?token=
