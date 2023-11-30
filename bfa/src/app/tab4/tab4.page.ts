@@ -42,7 +42,7 @@ export class Tab4Page implements OnInit {
       return {
         name: 'radio' + counter,
         type: 'radio',
-        label: `${user.get('grad')} ${user.get('firstname')} ${user.get('lastname')}`,
+        label: `${user?.get('grad')} ${user?.get('firstname')} ${user?.get('lastname')}`.trim() || 'Unbekannt',
         value: user.id,
         handler: () => {
           this.resetUserSaldo(user);
@@ -88,9 +88,9 @@ export class Tab4Page implements OnInit {
 
         const user = item.get('user');
         csvModel.push({
-          Grad: user.get('grad'),
-          Vorname: user.get('firstname'),
-          Nachname: user.get('lastname'),
+          Grad: user?.get('grad') ?? 'Unbekannt',
+          Vorname: user?.get('firstname') ?? 'Unbekannt',
+          Nachname: user?.get('lastname') ?? 'Unbekannt',
           Preis: totalAmount,
         });
       }
@@ -111,9 +111,9 @@ export class Tab4Page implements OnInit {
       for (const item of allOrders) {
         const user = item.get('user');
         csvModel.push({
-          Grad: user.get('grad'),
-          Vorname: user.get('firstname'),
-          Nachname: user.get('lastname'),
+          Grad: user?.get('grad'),
+          Vorname: user?.get('firstname'),
+          Nachname: user?.get('lastname'),
           Kaufdatum: item.get('orderedAt').toLocaleString()?.replace(',', ''),
           Preis: item.get('amount'),
         });
@@ -158,7 +158,7 @@ export class Tab4Page implements OnInit {
 
   groupOrdersByUser(xs) {
     return xs.reduce((rv, x) => {
-      (rv[x.attributes.user.id] = rv[x.attributes.user.id] || []).push(x);
+      (rv[x.attributes.user?.id ?? 'unknown'] = rv[x.attributes.user?.id ?? 'unknown'] || []).push(x);
       return rv;
     }, {});
   }

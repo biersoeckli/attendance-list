@@ -42,7 +42,7 @@ export class UserService {
 
     const map = new Map();
 
-    result.forEach(x => map.set(x.get('user').id, x.get('user')));
+    result.filter(x => !!x.get('user')).forEach(x => map.set(x.get('user').id, x.get('user')));
     return Array.from(map.values());
   }
 
