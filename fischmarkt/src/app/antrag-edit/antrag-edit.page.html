@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Neuer Antrag</ion-title>
+  </ion-toolbar>
+  <ion-toolbar *ngIf="android && filteredUsers && !selectedUser">
+    <ion-searchbar [(ngModel)]="searchString" (ionChange)="filterUsers()" placeholder="Suchen"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Neuer Antrag</ion-title>
+    </ion-toolbar>
+    <ion-toolbar *ngIf="filteredUsers && !selectedUser">
+      <ion-searchbar [(ngModel)]="searchString" (ionChange)="filterUsers()" placeholder="Suchen"></ion-searchbar>
+    </ion-toolbar>
+  </ion-header>
+
+  <div *ngIf="filteredUsers && !selectedUser">
+    <app-explore-container *ngIf="filteredUsers.length === 0" name="Keine Suchergebnisse"></app-explore-container>
+    <ion-list>
+      <ion-item *ngFor="let item of filteredUsers" (click)="selectedUser = item">
+        <ion-label>{{item.attributes.grad}} {{item.attributes.firstname}} {{item.attributes.lastname}}</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div *ngIf="filteredUsers && selectedUser">
+
+    <ion-item>
+      <ion-label position="stacked">Stabs MA</ion-label>
+      <ion-input [disabled]="true" [value]="selectedUser.attributes.firstname + ' ' + selectedUser.attributes.lastname">
+      </ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="fishTypeService.allFishTypes">
+      <ion-label position="stacked">Fisch Typ</ion-label>
+      <ion-select placeholder="Wähle den Fisch" (ionChange)="setFischType($event)">
+        <ion-select-option *ngFor="let item of fishTypeService.allFishTypes" [value]="item">{{item.attributes.name}} (<span [style]="'color: ' + (item.attributes.points <= 0 ? 'green' : 'red') + ';'">{{item.attributes.points}} Punkte</span>)</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Begründung</ion-label>
+      <ion-input [(ngModel)]="reason"></ion-input>
+    </ion-item>
+
+    <ion-button [disabled]="!selectedUser || !selectedFishType || !reason" expand="block"
+      (click)="saveAntrag()">Antrag einreichen</ion-button>
+
+  </div>
+</ion-content>

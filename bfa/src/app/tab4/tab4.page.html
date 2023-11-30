@@ -1,0 +1,23 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Admin</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Admin</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div style="margin: 1rem;">Gesamtbetrag von {{totalBestellungen}} Einkäufen:
+    <br /><strong>{{totalBatSaldo | currency: 'CHF '}}</strong>
+  </div>
+
+  <ion-button expand="block" fill="outline" (click)="createSaldoReportByUserId()">Abrechnung pro Benutzer</ion-button>
+  <ion-button expand="block" fill="outline" (click)="createSaldoReportByOrders()">Abrechnung pro Bestellung</ion-button>
+  <ion-button expand="block" fill="outline" (click)="saldoFuerBenutzerZuruecksetzen()">Saldo für Benutzer zurücksetzen
+  </ion-button>
+
+</ion-content>

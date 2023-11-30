@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "Fischmarkt",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

@@ -1,0 +1,53 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Warenkorb
+    </ion-title>
+    <ion-buttons slot="primary">
+      <ion-button routerLink="/scanner" *ngIf="android">
+        <ion-icon slot="icon-only" name="scan-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Warenkorb</ion-title>
+      <ion-buttons slot="primary">
+        <ion-button routerLink="/scanner">
+          <ion-icon slot="icon-only" name="scan-circle-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <empty-placeholder *ngIf="totalAmount === 0" text="Dein Warenkorb ist leer."></empty-placeholder>
+  <ion-list *ngIf="basketProducts">
+    <ion-item-sliding *ngFor="let item of basketProducts">
+      <ion-item>
+        <ion-label>{{item.attributes.name}}</ion-label>
+        <ion-label>{{item.attributes.price | number : '1.2-2'}} CHF</ion-label>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="basketService.removeItemFrombasket(item)">Löschen</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  
+</ion-content>
+
+
+<ion-footer *ngIf="totalAmount > 0">
+  <ion-toolbar>
+    <ion-title>Total: {{totalAmount | number : '1.2-2'}} CHF</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button fill="outline" (click)="order()">
+        Einkaufen
+        <ion-icon slot="end" name="card"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

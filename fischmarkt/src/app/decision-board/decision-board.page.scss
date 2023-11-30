@@ -1,0 +1,35 @@
+.aligncenter {
+  text-align: center;
+  margin: 2rem 0 1rem 0;
+}
+
+.userImage {
+  border-radius: 50%;
+  margin: 2rem 1rem 0 1rem;
+}
+
+.username {
+  text-align: center;
+  font-weight: 700;
+  margin: 0 0 20px 0;
+}
+
+.reason {
+  text-align: center;
+  padding: 0 2rem;
+  margin: 0;
+}
+
+.profilePicture {
+  margin: 0 auto;
+  background-position: center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+}
+
+ion-grid {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+}

@@ -1,0 +1,59 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="openAttendanceList()">
+        <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      Mein Aquarium
+    </ion-title>
+    
+    <ion-buttons slot="end">
+      <ion-button (click)="openReglement()">
+        <ion-icon slot="end" name="information-circle-outline"></ion-icon>
+      </ion-button>
+      <ion-button routerLink="/ranking">
+        <ion-icon slot="end" name="stats-chart-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Mein Aquarium</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="pointCont" *ngIf="antraegeService.userPoints != null">
+    <h1>{{antraegeService.userPoints}} Punkte</h1>
+  </div>
+
+  <ion-grid *ngIf="groupedFishes && groupFishNames">
+    <ion-row>
+      <ion-col *ngFor="let fishId of groupFishNames" size="6">
+        <div class="fishItemCont" [routerLink]="['/fish-detail', fishId]">
+          <img [src]="groupedFishes[fishId][0].get('image').url()" />
+          <p>{{groupedFishes[fishId].length}} {{groupedFishes[fishId][0].attributes.name}}</p>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+
+  <div class="ocean">
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+  </div>
+
+</ion-content>

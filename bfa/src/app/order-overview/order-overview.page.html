@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Dein Einkauf </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="saldoCont" *ngIf="order">
+    <h1>{{order.attributes.amount | number : '1.2-2'}} CHF</h1>
+  </div>
+
+  <ion-list-header>
+    <ion-label>Einkauf vom <span *ngIf="order">{{order.get('orderedAt') | date: 'dd.MM.yyyy HH:mm'}}</span></ion-label>
+  </ion-list-header>
+  <ion-list *ngIf="products">
+    <ion-item *ngFor="let item of products">
+      <ion-label>{{item.get('name')}}</ion-label>
+      <ion-label>{{item.attributes.price | number : '1.2-2'}} CHF</ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

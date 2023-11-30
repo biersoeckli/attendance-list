@@ -1,0 +1,7 @@
+{
+  "name": "Fischmarkt",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
