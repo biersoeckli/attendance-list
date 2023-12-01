@@ -46,10 +46,25 @@
                             {{stv.status.attributes.status_string}} </div>
                     </mat-list-item>
                 </div>
+                <div *ngIf="userRoles && userRoles.length > 0">
+                    <div mat-subheader>Rollen</div>
+
+                    @for (role of userRoles; track role) {
+                    <mat-list-item matRipple (click)="removeRole(role)">
+                        <mat-icon matListItemIcon>assignment_ind</mat-icon>
+                        <div matListItemTitle>
+                            {{role}}
+                        </div>
+                    </mat-list-item>
+                    }
+                </div>
             </mat-list>
             <mat-card-actions *ngIf="isAdmin">
                 <button mat-icon-button (click)="changePassword()">
                     <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-flat-button color="primary" *ngIf="userRoles && userRoles.length > 0" (click)="addRoleToUser()">
+                    Rolle hinzufügen
                 </button>
                 <button mat-icon-button *ngIf="!profileIsfromCurrentUser" color="warn" (click)="deleteUser()">
                     <mat-icon>delete</mat-icon>
@@ -63,11 +78,27 @@
 
             <div mat-subheader>Location (beta)</div>
             <mat-list-item matRipple>
-                <mat-icon matListItemIcon >
+                <mat-icon matListItemIcon>
                     location_on</mat-icon>
-                <div matListItemTitle>Stand: {{latestLocation?.get('createdAt') | date: 'dd.MM.yyyy HH:mm' || '-'}}</div>
+                <div matListItemTitle>Stand: {{latestLocation?.get('createdAt') | date: 'dd.MM.yyyy HH:mm' || '-'}}
+                </div>
             </mat-list-item>
-            </mat-list>
+        </mat-list>
+        <div #lMap style="border-radius: 0.25rem; width: 100%; height: 300px"></div>
+    </mat-card>
+
+
+    <mat-card style="margin-top: 1rem;" *ngIf="!hideLocation">
+        <mat-list role="list">
+
+            <div mat-subheader>Location (beta)</div>
+            <mat-list-item matRipple>
+                <mat-icon matListItemIcon>
+                    location_on</mat-icon>
+                <div matListItemTitle>Stand: {{latestLocation?.get('createdAt') | date: 'dd.MM.yyyy HH:mm' || '-'}}
+                </div>
+            </mat-list-item>
+        </mat-list>
         <div #lMap style="border-radius: 0.25rem; width: 100%; height: 300px"></div>
     </mat-card>
 </div>
