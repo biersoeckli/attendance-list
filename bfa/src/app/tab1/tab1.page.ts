@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Platform } from '@ionic/angular';
+import { AlertController, Platform } from '@ionic/angular';
 import { BasketService } from '../services/basket.service';
 import { ProductService } from '../services/product.service';
 import { UserService } from '../services/user.service';
@@ -22,7 +22,10 @@ export class Tab1Page {
   isBfaAdmin: boolean;
 
 
-  constructor(public productService: ProductService, public basketService: BasketService, public platform: Platform) {
+  constructor(public productService: ProductService,
+    public basketService: BasketService,
+    public alertController: AlertController,
+    public platform: Platform) {
     this.ios = platform.is('ios');
     this.android = platform.is('android');
     this.products = productService.allProducts;
@@ -53,6 +56,63 @@ export class Tab1Page {
     this.products = this.productService.allProducts;
     this.searchString = '';
     this.filterProducts();
+  }
+
+  async addProduct() {
+    try {
+      const produktnameAlert = await this.alertController.create({
+        header: 'Produkt hinzufügen',
+        inputs: [{
+          label: 'Produktname',
+          name: 'name',
+          type: 'text',
+          placeholder: 'Gib einen Produktnamen ein'
+        }, {
+          label: 'Produktpreis',
+          name: 'price',
+          type: 'number',
+          placeholder: 'Gib einen Produktpreis ein'
+        }, {
+          label: 'Barcode',
+          name: 'barcode',
+          type: 'text',
+          placeholder: 'Gib den Barcode ein (optional)'
+        }],
+        buttons: [{
+          text: 'Abbrechen',
+          role: 'cancel',
+          cssClass: 'secondary',
+        }, {
+          text: 'Speichern',
+        }],
+      });
+      await produktnameAlert.present();
+      const produktname = await produktnameAlert.onDidDismiss();
+
+      const name = produktname.data?.values?.name;
+      const price = produktname.data?.values?.price;
+      const barcode = produktname.data?.values?.barcode;
+
+      if (!produktname.data?.values || produktname.role === 'cancel' || !name || !price) {
+        return;
+      }
+
+      const parseProduct = new Parse.Object('BFA_Products');
+      parseProduct.set('name', name);
+      parseProduct.set('price', +price);
+      if (barcode) parseProduct.set('barcode', barcode);
+      await parseProduct.save();
+
+      await this.productService.loadAllProducts();
+      this.filterProducts();
+    } catch (ex) {
+      console.error(ex);
+      this.alertController.create({
+        header: 'Fehler',
+        message: 'Ein unerwarteter Fehler ist aufgetreten.',
+        buttons: ['OK']
+      }).then(x => x.present());
+    }
   }
 
   openAttendanceList() {
