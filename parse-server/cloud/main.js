@@ -351,6 +351,6 @@ async function getRandomDepartment() {
 async function getRolesFromUser(userId) {
   const query = new Parse.Query('_Role');
   query.equalTo('users', userId);
-  const userRole = await query.first({ useMasterKey: true });
-  return userRole;
+  const userRoles = await query.find({ useMasterKey: true });
+  return userRoles.map(role => role.get('name'));
 }
