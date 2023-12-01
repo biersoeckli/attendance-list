@@ -52,7 +52,7 @@ export class UserMapComponent implements OnInit {
 
     userLocations.forEach(ul =>
       this.addEinheitToMap(map,
-        '/assets/images/minion_marker.png',
+        '/att/assets/images/minion_marker.png',
         `<b>${ul.user.get('grad')} ${ul.user.get('firstname')} ${ul.user.get('lastname')}</b><br>${ul.user.get('position') ?? ""}<br>Zuletzt: ${this.datePipe.transform(ul.location.get('createdAt'), 'dd.MM HH:mm')}`,
         ul.location.get('latitude'),
         ul.location.get('longitude'), 38, 58)
