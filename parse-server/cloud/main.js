@@ -15,9 +15,11 @@ Parse.Cloud.define('getRolesFromUser', async request => {
 });
 
 Parse.Cloud.define('addUserToRole', async request => {
-  const userId2Delete = request.params.roleName;
-  if (request.user && isUserIdInRole(request.user.id, 'admin') && userId2Delete) {
-    await addUser2Role(request.params.roleName, request.params.user);
+  const roleName = request.params.roleName;
+  const userId = request.params.userId;
+  if (request.user && isUserIdInRole(request.user.id, 'admin')
+    && userId && roleName) {
+    await addUser2Role(roleName, await getUserById(userId));
     return true;
   } else {
     throw 'User is not authorized.';
@@ -25,9 +27,11 @@ Parse.Cloud.define('addUserToRole', async request => {
 });
 
 Parse.Cloud.define('removeRoleFromUser', async request => {
-  const userId2Delete = request.params.roleName;
-  if (request.user && isUserIdInRole(request.user.id, 'admin') && userId2Delete) {
-    await removeRoleFromUser(request.params.roleName, request.params.user);
+  const roleName = request.params.roleName;
+  const userId = request.params.userId;
+  if (request.user && isUserIdInRole(request.user.id, 'admin')
+    && userId && roleName) {
+    await removeRoleFromUser(roleName, await getUserById(userId));
     return true;
   } else {
     throw 'User is not authorized.';
@@ -350,7 +354,12 @@ async function getRandomDepartment() {
 
 async function getRolesFromUser(userId) {
   const query = new Parse.Query('_Role');
-  query.equalTo('users', userId);
+  query.equalTo('users', await getUserById(userId));
   const userRoles = await query.find({ useMasterKey: true });
   return userRoles.map(role => role.get('name'));
+}
+
+async function getUserById(userId) {
+  const query = new Parse.Query('_User');
+  return await query.get(userId, { useMasterKey: true });
 }
