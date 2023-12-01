@@ -5,6 +5,35 @@ const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fet
 const phoneNumberRegex =
   /(\b(0041)|\B\+41)(\s?\(0\))?(\s)?[1-9]{2}(\s)?[0-9]{3}(\s)?[0-9]{2}(\s)?[0-9]{2}\b/;
 
+Parse.Cloud.define('getRolesFromUser', async request => {
+  const userId2Delete = request.params.roleName;
+  if (request.user && isUserIdInRole(request.user.id, 'admin') && userId2Delete) {
+    return await getRolesFromUser(request.params.user);
+  } else {
+    return [];
+  }
+});
+
+Parse.Cloud.define('addUserToRole', async request => {
+  const userId2Delete = request.params.roleName;
+  if (request.user && isUserIdInRole(request.user.id, 'admin') && userId2Delete) {
+    await addUser2Role(request.params.roleName, request.params.user);
+    return true;
+  } else {
+    throw 'User is not authorized.';
+  }
+});
+
+Parse.Cloud.define('removeRoleFromUser', async request => {
+  const userId2Delete = request.params.roleName;
+  if (request.user && isUserIdInRole(request.user.id, 'admin') && userId2Delete) {
+    await removeRoleFromUser(request.params.roleName, request.params.user);
+    return true;
+  } else {
+    throw 'User is not authorized.';
+  }
+});
+
 Parse.Cloud.define('deleteUser', async request => {
   const userId2Delete = request.params.user2delete;
   if (request.user && isUserIdInRole(request.user.id, 'admin') && userId2Delete) {
@@ -265,6 +294,16 @@ async function addUser2Role(roleName, userObject) {
   await userRole.save(null, { useMasterKey: true });
 }
 
+async function removeRoleFromUser(roleName, userObject) {
+  const query = new Parse.Query('_Role');
+  query.equalTo('name', roleName);
+  const userRole = await query.first();
+
+  const relation = userRole.relation('users');
+  relation.remove(userObject);
+  await userRole.save(null, { useMasterKey: true });
+}
+
 async function isUserInRole(user, roleName) {
   return isUserIdInRole(user, roleName);
 }
@@ -307,4 +346,11 @@ async function getRandomDepartment() {
   const GameScore = Parse.Object.extend('department');
   const query = new Parse.Query(GameScore);
   return await query.first({ useMasterKey: true });
+}
+
+async function getRolesFromUser(userId) {
+  const query = new Parse.Query('_Role');
+  query.equalTo('users', userId);
+  const userRole = await query.first({ useMasterKey: true });
+  return userRole;
 }

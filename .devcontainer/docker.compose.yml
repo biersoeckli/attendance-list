@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 services:
   vscode-container:
     build:
@@ -9,3 +9,18 @@ services:
       - ..:/workspace
       - ~/.ssh:/home/node/.ssh
     env_file: devcontainer.env
+  attendance-list-mongodb:
+    image: mongo:6-jammy
+    restart: always
+    hostname: attendance-list-mongodb-db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=mongo
+      - MONGO_INITDB_ROOT_PASSWORD=mongo
+      - MONGO_INITDB_DATABASE=attendance-list
+    ports:
+      - "27017:27017"
+    volumes:
+      - attendance-list-mongodb:/data/db
+volumes:
+  attendance-list-mongodb:
+    driver: local
