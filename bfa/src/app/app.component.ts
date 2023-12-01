@@ -16,7 +16,11 @@ export class AppComponent {
       this.showLoader = true;
 
       Parse.initialize(environment.parseAppId);
-      (Parse as any).serverURL = environment.parseServerUrl;
+      let parseServerUrl = environment.parseServerUrl;
+      if (parseServerUrl.startsWith('/')) {
+        parseServerUrl = location.protocol + '//' + location.host + parseServerUrl;
+      }
+      (Parse as any).serverURL = parseServerUrl;
     } catch (ex) {
       alert('Ein unerwarteter fehler ist aufgetreten.');
       console.error(ex);

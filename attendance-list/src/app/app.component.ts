@@ -26,7 +26,12 @@ export class AppComponent implements OnInit {
     private readonly geoService: GeolocationService) {
     try {
       Parse.initialize(environment.parseAppId);
-      (Parse as any).serverURL = environment.parseServerUrl;
+
+      let parseServerUrl = environment.parseServerUrl;
+      if (parseServerUrl.startsWith('/')) {
+        parseServerUrl = location.protocol + '//' + location.host + parseServerUrl;
+      }
+      (Parse as any).serverURL = parseServerUrl;
       this.geoService.initializeIfAllowed();
     } catch (ex) {
       console.error(ex);

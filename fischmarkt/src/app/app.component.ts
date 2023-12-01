@@ -24,7 +24,11 @@ export class AppComponent {
       this.showLoader = true;
 
       Parse.initialize(environment.parseAppId);
-      (Parse as any).serverURL = environment.parseServerUrl;
+      let parseServerUrl = environment.parseServerUrl;
+      if (parseServerUrl.startsWith('/')) {
+        parseServerUrl = location.protocol + '//' + location.host + parseServerUrl;
+      }
+      (Parse as any).serverURL = parseServerUrl;
 
       this.init();
 
