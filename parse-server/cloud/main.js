@@ -6,9 +6,9 @@ const phoneNumberRegex =
   /(\b(0041)|\B\+41)(\s?\(0\))?(\s)?[1-9]{2}(\s)?[0-9]{3}(\s)?[0-9]{2}(\s)?[0-9]{2}\b/;
 
 Parse.Cloud.define('getRolesFromUser', async request => {
-  const userId2Delete = request.params.roleName;
-  if (request.user && isUserIdInRole(request.user.id, 'admin') && userId2Delete) {
-    return await getRolesFromUser(request.params.user);
+  const userId = request.params.userId;
+  if (request.user && isUserIdInRole(request.user.id, 'admin') && userId) {
+    return await getRolesFromUser(userId);
   } else {
     return [];
   }
