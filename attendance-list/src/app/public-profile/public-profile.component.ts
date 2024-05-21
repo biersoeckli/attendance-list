@@ -107,7 +107,7 @@ export class PublicProfileComponent implements OnInit {
     const layer = new L.TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
 
     var markerIcon = L.icon({
-      iconUrl: '/assets/images/minion_marker.png',
+      iconUrl: '/att/assets/images/minion_marker.png',
       iconSize: [38, 58], // size of the icon
       //shadowSize:   [50, 64], // size of the shadow
       iconAnchor: [22, 58], // point of the icon which will correspond to marker's location
