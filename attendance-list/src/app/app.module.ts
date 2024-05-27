@@ -38,6 +38,7 @@ import { EmergencyListComponent } from './emergency-list/emergency-list.componen
 import { SkillShareEditComponent } from './skill-share/skill-share-edit/skill-share-edit.component';
 import { SkillShareOverviewComponent } from './skill-share/skill-share-overview/skill-share-overview.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatAutocompleteModule,
     ReactiveFormsModule,
     MatGridListModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatExpansionModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

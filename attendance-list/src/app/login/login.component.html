@@ -1,35 +1,59 @@
-<mat-card>
-    <mat-card-content>
-        <p class="title">Attendance List</p>
-        <mat-form-field class="input-full-width">
-            <mat-label>Benutzername</mat-label>
-            <input [(ngModel)]="loginModel.username" matInput placeholder="" (keyup)="formatUsername()"
-                (key.enter)="login()">
-        </mat-form-field>
-        <mat-form-field class="input-full-width">
-            <mat-label>Passwort</mat-label>
-            <input [(ngModel)]="loginModel.password" type="password" matInput placeholder="" (key.enter)="login()">
-        </mat-form-field>
-        <mat-form-field class="input-full-width" *ngIf="isRegistration">
-            <mat-label>Registration Code</mat-label>
-            <input [(ngModel)]="loginModel.registercode" type="text" matInput placeholder="" (key.enter)="login()">
-        </mat-form-field>
-        <div class="errorMsg" *ngIf="errorMessage">{{errorMessage}}</div>
-        <div class="loginBtn">
-            <button [disabled]="loginInProgress" mat-button mat-flat-button color="primary" (click)="login()">
-                {{isRegistration ? 'Registrieren' : 'Login'}}
-            </button>
-        </div>
-        <div *ngIf="loginInProgress" class="progBar">
-            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-        </div>
-    </mat-card-content>
-</mat-card>
+<div style="margin: 1rem;">
+    <mat-accordion>
+        <mat-expansion-panel hideToggle [expanded]="true">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    SkillShare
+                </mat-panel-title>
+                <mat-panel-description>
+                  <mat-icon>school</mat-icon>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div> Teile dein Wissen mit anderen aus dem Spit Bat 75 oder lerne etwas neues an einem Workshop.</div>
+            <button routerLink="/skill-share" style="margin-top: 1rem;" mat-flat-button color="primary">SkillShare öffnen</button>
+        </mat-expansion-panel>
 
-<div *ngIf="!isRegistration && registrationIsEnabled" class="loginBtn">
-    <button mat-button (click)="isRegistration = true">Ich möchte mich registrieren</button>
-</div>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Attendance List Login
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div>
+                <mat-form-field class="input-full-width">
+                    <mat-label>Benutzername</mat-label>
+                    <input [(ngModel)]="loginModel.username" matInput placeholder="" (keyup)="formatUsername()"
+                        (key.enter)="login()">
+                </mat-form-field>
+                <mat-form-field class="input-full-width">
+                    <mat-label>Passwort</mat-label>
+                    <input [(ngModel)]="loginModel.password" type="password" matInput placeholder=""
+                        (key.enter)="login()">
+                </mat-form-field>
+                <mat-form-field class="input-full-width" *ngIf="isRegistration">
+                    <mat-label>Registration Code</mat-label>
+                    <input [(ngModel)]="loginModel.registercode" type="text" matInput placeholder=""
+                        (key.enter)="login()">
+                </mat-form-field>
+                <div class="errorMsg" *ngIf="errorMessage">{{errorMessage}}</div>
+                <div class="loginBtn">
+                    <button [disabled]="loginInProgress" mat-button mat-flat-button color="primary" (click)="login()">
+                        {{isRegistration ? 'Registrieren' : 'Login'}}
+                    </button>
+                </div>
+                <div *ngIf="loginInProgress" class="progBar">
+                    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+                </div>
 
-<div *ngIf="isRegistration" class="loginBtn">
-    <button mat-button (click)="isRegistration = false">Ich habe bereits ein Konto</button>
+
+                <div *ngIf="!isRegistration && registrationIsEnabled" class="loginBtn">
+                    <button mat-button (click)="isRegistration = true">Ich möchte mich registrieren</button>
+                </div>
+
+                <div *ngIf="isRegistration" class="loginBtn">
+                    <button mat-button (click)="isRegistration = false">Ich habe bereits ein Konto</button>
+                </div>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
 </div>
