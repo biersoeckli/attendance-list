@@ -24,17 +24,20 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { MatRippleModule } from '@angular/material/core';
 import { QuickUserInfoComponent } from './quick-user-info/quick-user-info.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { PublicProfileComponent } from './public-profile/public-profile.component';
 import { UserDirectoryComponent } from './user-directory/user-directory.component';
 import { SettingsComponent } from './settings/settings.component';
-import {MatChipsModule} from '@angular/material/chips';
+import { MatChipsModule } from '@angular/material/chips';
 import { StatisticsComponent } from './statistics/statistics.component';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HomeComponent } from './home/home.component';
-import {MatGridListModule} from '@angular/material/grid-list';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { UserMapComponent } from './user-map/user-map.component';
 import { EmergencyListComponent } from './emergency-list/emergency-list.component';
+import { SkillShareEditComponent } from './skill-share/skill-share-edit/skill-share-edit.component';
+import { SkillShareOverviewComponent } from './skill-share/skill-share-overview/skill-share-overview.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -50,7 +53,9 @@ import { EmergencyListComponent } from './emergency-list/emergency-list.componen
     StatisticsComponent,
     HomeComponent,
     UserMapComponent,
-    EmergencyListComponent
+    EmergencyListComponent,
+    SkillShareOverviewComponent,
+    SkillShareEditComponent
 
   ],
   imports: [
@@ -74,7 +79,8 @@ import { EmergencyListComponent } from './emergency-list/emergency-list.componen
     MatSidenavModule,
     MatAutocompleteModule,
     ReactiveFormsModule,
-    MatGridListModule
+    MatGridListModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]

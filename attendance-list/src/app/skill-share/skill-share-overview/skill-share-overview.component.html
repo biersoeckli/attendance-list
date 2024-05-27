@@ -1,0 +1,40 @@
+<div class="content-wrapper">
+    <div style="padding-bottom: 1rem;">
+        <div class="skill-title">SkillShare</div>
+        <div style="margin-top: 0.5rem; padding-bottom: 1rem;">
+            Biete deine zivilen Skills in Form eines Kurses oder Workshops während dem WK an.
+        </div>
+        <button mat-raised-button color="primary" routerLink="/skill-share/edit">Skill Post erstellen</button>
+    </div>
+    @if(!skillPosts) {
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    } @else {
+    @for (skillPost of skillPosts; track skillPosts) {
+    <mat-card class="example-card">
+        <mat-card-header>
+            <mat-card-title>{{skillPost.attributes.title}}</mat-card-title>
+            <mat-card-subtitle>{{skillPost.attributes.contactName}} |
+                {{skillPost.attributes.contactUnit}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <p>
+                {{skillPost.attributes.description}}
+            </p>
+            <p style="font-weight: bold;" *ngIf="skillPost.attributes.showContact">
+                Tel: {{skillPost.attributes.contactPhone}}
+            </p>
+        </mat-card-content>
+        <mat-card-actions>
+            <button (click)="skillPost.set('showContact',!skillPost.attributes.showContact)"
+                mat-button>Kontaktieren</button>
+        </mat-card-actions>
+    </mat-card>
+
+    } @empty {
+    <div>
+        Aktuell gibt es keine ausgeschriebenen SkillShares.
+        Inseriere dein eigenes SkillShare oder schau zu einem späteren Zeitpunkt vorbei
+    </div>
+    }
+    }
+</div>

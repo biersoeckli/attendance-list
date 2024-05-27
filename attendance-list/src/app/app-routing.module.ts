@@ -10,6 +10,8 @@ import { StatisticsComponent } from './statistics/statistics.component';
 import { HomeComponent } from './home/home.component';
 import { UserMapComponent } from './user-map/user-map.component';
 import { EmergencyListComponent } from './emergency-list/emergency-list.component';
+import { SkillShareEditComponent } from './skill-share/skill-share-edit/skill-share-edit.component';
+import { SkillShareOverviewComponent } from './skill-share/skill-share-overview/skill-share-overview.component';
 
 const routes: Routes = [
   /*{
@@ -66,7 +68,15 @@ const routes: Routes = [
     path: 'map',
     pathMatch: 'full',
     component: UserMapComponent,
+  },
+  {
+    path: 'skill-share',
+    component: SkillShareOverviewComponent,
+  }, {
+    path: 'skill-share/edit',
+    component: SkillShareEditComponent,
   }
+
 ];
 
 @NgModule({

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import * as Parse from 'parse';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatSidenav } from '@angular/material/sidenav';
 import { ParameterService } from './services/parameter.service';
 import { Parameter } from './constants/parameter';
@@ -22,6 +22,7 @@ export class AppComponent implements OnInit {
   showLoader: boolean;
 
   constructor(private readonly router: Router,
+    private readonly activatedRoute: ActivatedRoute,
     private readonly snackbar: MatSnackBar,
     private readonly geoService: GeolocationService) {
     try {
@@ -44,7 +45,7 @@ export class AppComponent implements OnInit {
     try {
 
       this.currentUser = await Parse.User.current()?.fetch();
-      if (!this.currentUser) {
+      if (!this.currentUser && !location.pathname.includes('skill-share')) {
         this.showLoader = false;
         this.router.navigateByUrl('/login');
       } else {

@@ -1,0 +1,35 @@
+<div class="content-wrapper">
+    @if(skillPost) {
+    <form #myForm="ngForm" (ngSubmit)="onSubmit($event)" [noValidate]="false">
+        <mat-form-field>
+            <mat-label>Title</mat-label>
+            <input matInput placeholder="z.B. Excel Einteigerkurs" name="title" required>
+        </mat-form-field><br>
+        <mat-form-field>
+            <mat-label>Beschreibung</mat-label>
+            <textarea matInput
+                placeholder="Beschreibe dein Angebot. z.B. Excel Einteigerkurs, 2 Stunden, erlerenen der Grundlagen von Pivot Tabellen"
+                rows="7" name="description" required></textarea>
+        </mat-form-field><br>
+        <mat-form-field>
+            <mat-label>Dein Name</mat-label>
+            <input matInput placeholder="Dein Name" name="contactName" required>
+        </mat-form-field><br>
+        <mat-form-field>
+            <mat-label>Telefon Nr.</mat-label>
+            <input matInput name="contactPhone" placeholder="Deine Tel Nr." required>
+        </mat-form-field><br>
+        <mat-form-field>
+            <mat-label>Kompanie</mat-label>
+            <mat-select [(ngModel)]="contactUnitSelected" required name="contactUnit">
+                <mat-option value="Stabskp">Stabskp</mat-option>
+                <mat-option value="Kp 1">Kp 1</mat-option>
+                <mat-option value="Kp 2">Kp 2</mat-option>
+                <mat-option value="Stab">Stab</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br>
+        <button mat-raised-button color="primary" type="submit">Speichern</button>
+    </form>
+    }
+</div>
