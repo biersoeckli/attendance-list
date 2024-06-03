@@ -91,15 +91,19 @@ async function sendSms(phoneNumber, text) {
     }
   };
 
-  const response = await fetch(process.env.SMS_SERVICE_URL, {
-    method: 'POST',
-    mode: 'cors',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(body)
-  });
-  await response.json();
+  try {
+    const response = await fetch(process.env.SMS_SERVICE_URL, {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    });
+    await response.json();
+  } catch (ex) {
+    console.error('Error while sending sms for notifications', ex);
+  }
 }
 
 async function updateInfomaniakPingDns() {
