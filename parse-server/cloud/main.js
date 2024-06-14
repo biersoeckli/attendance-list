@@ -134,8 +134,8 @@ Parse.Cloud.afterSave('_User', async request => {
     await userRole.save(null, { useMasterKey: true });
 
     await addUser2Role('bfa-user', request.object);
-    //await addUser2Role('fm-user', request.object);
-    //await addUser2Role('geo-tracking', request.object);
+    await addUser2Role('fm-user', request.object);
+    await addUser2Role('geo-tracking', request.object);
 
     console.log('Added user with id ' + request.object.id + ' to role user and bfa-user.');
   }
