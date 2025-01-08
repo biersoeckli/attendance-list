@@ -1,5 +1,5 @@
 #Building frontends
-FROM node:lts AS build
+FROM node:20 AS build
 
 WORKDIR /build-dir
 
@@ -20,7 +20,7 @@ RUN cd bfa && npm install && npm run build-prod-dockerfile
 RUN cd attendance-list && npm install && npm run build-prod-dockerfile
 
 # Creating final image
-FROM node:lts-slim
+FROM node:20-slim
 WORKDIR /app
 COPY --from=build /build-dir/parse-server .
 
